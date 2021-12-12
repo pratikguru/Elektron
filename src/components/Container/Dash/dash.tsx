@@ -1,7 +1,9 @@
-import React, { Suspense, lazy } from "react";
+import React, { lazy } from "react";
 import styled from "styled-components";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { Routes, Route, Outlet } from "react-router-dom";
+import Profile from "../../Views/Profile/profile";
 const Splash = lazy(() => import("../../Views/Splash/splash"));
 const Map = lazy(() => import("../../Views/Map/map"));
 const ProgressBar = lazy(() => import("../../Views/ProgressBar/progressBar"));
@@ -29,7 +31,7 @@ const InterfaceContainer = styled(Container)`
 `;
 
 const ControlsContainer = styled(motion.div)`
-  width: 73%;
+  width: 90%;
   height: 95%;
   border-radius: 20px;
 
@@ -44,6 +46,14 @@ const Dash = () => {
   const [battery, setBattery] = React.useState<number>(20);
 
   React.useEffect(() => {
+    if (mode) {
+      setBattery(40);
+    } else {
+      setBattery(20);
+    }
+  }, [mode]);
+
+  React.useEffect(() => {
     const timer = setTimeout(() => {
       setShow(false);
     }, 3500);
@@ -55,27 +65,46 @@ const Dash = () => {
   return (
     <Container>
       <AnimatePresence>
-        <InterfaceContainer>
-          <ControlsContainer>
-            <Map />
+        {show ? (
+          <Splash />
+        ) : (
+          <InterfaceContainer>
             <BottomBar />
-          </ControlsContainer>
-          <ControlsContainer
-            style={{
-              width: "25%",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Stats
-              mode={mode}
-              toggleMode={() => setMode(!mode)}
-              battery={battery}
-            />
-            <ProgressBar battery={battery} />
-          </ControlsContainer>
-        </InterfaceContainer>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <AnimatePresence>
+                    <ControlsContainer>
+                      <Map />
+                    </ControlsContainer>
+                    {
+                      <ControlsContainer
+                        style={{
+                          position: "fixed",
+                          width: "25%",
+                          flexDirection: "row",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                        }}
+                      >
+                        {/* <Stats
+                          mode={mode}
+                          toggleMode={() => setMode(!mode)}
+                          battery={battery}
+                        /> */}
+                        <ProgressBar battery={battery} />
+                      </ControlsContainer>
+                    }
+                    <Outlet />
+                  </AnimatePresence>
+                }
+              ></Route>
+              <Route path="profile" element={<Profile />}></Route>
+              <Route path="*" element={<Profile />}></Route>
+            </Routes>
+          </InterfaceContainer>
+        )}
       </AnimatePresence>
     </Container>
   );

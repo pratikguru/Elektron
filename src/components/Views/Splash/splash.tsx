@@ -31,6 +31,7 @@ const SplashScreen = () => {
 
   return (
     <Container
+      ref={ref}
       animate={{
         display: "flex",
         opacity: [0, 1, 0],

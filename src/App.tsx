@@ -1,11 +1,11 @@
-import React, { lazy, Suspense } from "react";
-import SplashScreen from "./components/Views/Splash/splash";
+import React, { lazy, Suspense, ReactElement } from "react";
 
 const Dash = lazy(() => import("./components/Container/Dash/dash"));
 
-const App = (): any => {
+const App: React.FC<any> = () => {
+  window.scrollTo(0, 1);
   return (
-    <Suspense fallback={<div></div>}>
+    <Suspense fallback={null}>
       <Dash></Dash>
     </Suspense>
   );

@@ -10,7 +10,7 @@ const Container = styled(motion.div)`
   height: 100%;
   display: flex;
   background-color: grey;
-  border-radius: 20px;
+  border-radius: 5px;
 `;
 
 const Map = () => {
@@ -25,15 +25,7 @@ const Map = () => {
     }
   }, [controls, inView]);
 
-  return (
-    <Container>
-      <img
-        src={MapImg}
-        alt=""
-        style={{ borderRadius: "20px", height: "100%", width: "100%" }}
-      />
-    </Container>
-  );
+  return <Container ref={ref}></Container>;
 };
 
 export default Map;

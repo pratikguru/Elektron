@@ -5,15 +5,16 @@ import { motion } from "framer-motion";
 import NoBattery from "../../../Assets/Icons/no-battery.png";
 
 const Container = styled(motion.div)`
-  width: 50%;
-  height: 100%;
+  width: 30%;
+  height: -webkit-fill-available;
   flex-direction: row;
   display: flex;
-
+  position: fixed;
   border-radius: 20px;
   align-items: flex-end;
   padding-bottom: 10%;
   justify-content: space-evenly;
+  left: 0;
 `;
 
 const ProgressContainer = styled(motion.div)`
@@ -69,11 +70,11 @@ const ProgressBar = ({ battery }: ProgressProps) => {
           }}
         ></Progress>
       </ProgressContainer>
-      <BatteryContainer
+      {/* <BatteryContainer
         animate={{ backgroundColor: battery <= 20 ? "red" : "#ff000054" }}
       >
         <BatteryIcon src={NoBattery} alt="" />
-      </BatteryContainer>
+      </BatteryContainer> */}
     </Container>
   );
 };
