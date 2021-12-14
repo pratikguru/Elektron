@@ -3,15 +3,19 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const Container = styled(motion.div)`
-  width: auto;
+  transform: scale(0.8);
   height: 100%;
   flex-direction: row;
   display: flex;
   border-radius: 20px;
   padding-top: 20px;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
+  position: fixed;
+  right: 0;
+  width: 40%;
+  top: 1px;
 `;
 
 const StatSpeed = styled(motion.div)`

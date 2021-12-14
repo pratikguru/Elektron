@@ -43,15 +43,7 @@ const ControlsContainer = styled(motion.div)`
 const Dash = () => {
   const [show, setShow] = React.useState<boolean>(true);
   const [mode, setMode] = React.useState<boolean>(false);
-  const [battery, setBattery] = React.useState<number>(20);
-
-  React.useEffect(() => {
-    if (mode) {
-      setBattery(40);
-    } else {
-      setBattery(20);
-    }
-  }, [mode]);
+  const [battery, setBattery] = React.useState<number>(100);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -61,6 +53,24 @@ const Dash = () => {
       clearTimeout(timer);
     };
   }, []);
+
+  React.useEffect(() => {
+    const timer = setInterval(
+      () => {
+        let pwr: number = battery;
+        if (pwr > 0) {
+          pwr--;
+          setBattery(pwr);
+        } else {
+          setBattery(100);
+        }
+      },
+      mode ? 5000 : 4000
+    );
+    return () => {
+      clearInterval(timer);
+    };
+  }, [setBattery, battery, mode]);
 
   return (
     <Container>
@@ -84,15 +94,17 @@ const Dash = () => {
                           position: "fixed",
                           width: "25%",
                           flexDirection: "row",
-                          justifyContent: "space-between",
+                          justifyContent: "center",
                           alignItems: "center",
                         }}
                       >
-                        {/* <Stats
-                          mode={mode}
-                          toggleMode={() => setMode(!mode)}
-                          battery={battery}
-                        /> */}
+                        {
+                          <Stats
+                            mode={mode}
+                            toggleMode={() => setMode(!mode)}
+                            battery={battery}
+                          />
+                        }
                         <ProgressBar battery={battery} />
                       </ControlsContainer>
                     }

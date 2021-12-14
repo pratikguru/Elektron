@@ -5,22 +5,20 @@ import RoundedButton from "../RoundedButton/roundedButton";
 
 const Container = styled.div`
   display: flex;
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  height: 70px;
-  width: auto;
+  height: auto;
+  width: -webkit-fill-available;
   background-color: #bac2eb40;
-  border-radius: 10px;
   justify-content: center;
   align-items: center;
   z-index: 1000000;
-  margin-bottom: 15%;
 `;
 
 const ProfileIcon = () => {
   return (
     <svg
-      style={{ width: "30px", height: "30px", color: "#ffffffa6" }}
+      style={{ width: "15px", height: "15px", color: "#ffffffa6" }}
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
@@ -36,7 +34,7 @@ const ProfileIcon = () => {
 const MapIcon = () => {
   return (
     <svg
-      style={{ width: "30px", height: "30px", color: "#ffffffa6" }}
+      style={{ width: "15px", height: "15px", color: "#ffffffa6" }}
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"

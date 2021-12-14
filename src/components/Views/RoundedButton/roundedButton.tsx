@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Container = styled(motion.div)`
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   display: flex;
-  border-radius: 10px;
+  border-radius: 2px;
   background-color: #3a3838;
   justify-content: center;
   align-items: center;
